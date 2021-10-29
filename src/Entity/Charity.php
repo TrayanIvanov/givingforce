@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CharityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,6 +35,16 @@ class Charity
      * @ORM\JoinColumn(name="country_id", referencedColumnName="country_id", nullable=false)
      */
     private $country;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Application::class, mappedBy="charity")
+     */
+    private $applications;
+
+    public function __construct()
+    {
+        $this->applications = new ArrayCollection();
+    }
 
     public function getId(): int
     {
@@ -80,5 +92,10 @@ class Charity
         $this->country = $country;
 
         return $this;
+    }
+
+    public function getApplications(): Collection
+    {
+        return $this->applications;
     }
 }

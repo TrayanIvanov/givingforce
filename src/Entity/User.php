@@ -35,9 +35,15 @@ class User
      */
     private $roles;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Application::class, mappedBy="user")
+     */
+    private $applications;
+
     public function __construct()
     {
         $this->roles = new ArrayCollection();
+        $this->applications = new ArrayCollection();
     }
 
     public function getId(): int
@@ -79,5 +85,10 @@ class User
     public function getRoles(): Collection
     {
         return $this->roles;
+    }
+
+    public function getApplications(): Collection
+    {
+        return $this->applications;
     }
 }
