@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>
+        List of applications
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Creator</th>
+                <th>Charity</th>
+                <th>Stage</th>
+                <th>Created</th>
+            </tr>
+            {% for application in applications %}
+                <tr>
+                    <td>{{ application.id }}</td>
+                    <td>{{ application.user.name }}</td>
+                    <td>{{ application.charity.name }}</td>
+                    <td>{{ application.stage }}</td>
+                    <td>{{ application.createdAt|date }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div>
+        <a href="{{ path('applications_create') }}" class="btn btn-primary">Create application</a>
+    </div>
+{% endblock %}

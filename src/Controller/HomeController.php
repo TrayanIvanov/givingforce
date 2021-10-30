@@ -9,6 +9,6 @@ class HomeController extends AbstractController
 {
     public function index(): Response
     {
-        return $this->json(['lorem' => 'ips']);
+        return $this->render('home.html.twig');
     }
 }

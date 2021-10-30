@@ -1,3 +1,11 @@
 index:
    path: /
    controller: App\Controller\HomeController::index
+
+applications_list:
+   path: applications
+   controller: App\Controller\ApplicationController::list
+
+applications_create:
+   path: applications/create
+   controller: App\Controller\ApplicationController::create

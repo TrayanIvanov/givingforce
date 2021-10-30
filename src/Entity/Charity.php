@@ -98,4 +98,9 @@ class Charity
     {
         return $this->applications;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

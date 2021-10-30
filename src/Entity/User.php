@@ -91,4 +91,9 @@ class User
     {
         return $this->applications;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ApplicationRepository;
+use App\Validator\ApplicationUserEmployee;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,7 +16,7 @@ class Application
     public const STAGE_ORGANISATION_APROVAL = 'organisation_approval';
     public const STAGE_ALLOW_TO_PROCEED = 'allow_to_proceed';
     public const STAGE_PAID = 'paid';
-
+    
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -26,6 +27,8 @@ class Application
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="applications")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="user_id", nullable=false)
+     *
+     * @ApplicationUserEmployee()
      */
     private $user;
 
@@ -57,7 +60,7 @@ class Application
         return $this;
     }
 
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
@@ -69,7 +72,7 @@ class Application
         return $this;
     }
 
-    public function getCharity(): Charity
+    public function getCharity(): ?Charity
     {
         return $this->charity;
     }
@@ -95,7 +98,7 @@ class Application
 
     public function getCreatedAt(): DateTime
     {
-        return $this->createdAt;
+        return new DateTime($this->createdAt);
     }
 
     public function setCreatedAt(DateTime $createdAt): self
