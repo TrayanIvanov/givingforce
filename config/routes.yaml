@@ -9,3 +9,10 @@ applications_list:
 applications_create:
    path: applications/create
    controller: App\Controller\ApplicationController::create
+
+applications_transit:
+   path: applications/{id}/{transition}
+   controller: App\Controller\ApplicationController::transit
+   requirements:
+      transition: forward|backward
+   methods: put
